@@ -177,7 +177,7 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
 
 ### Inserir
 
-```json
+```javascript
 {
   "date": "2020-07-20T10:00:00Z",
   "description": "The new generation PS5 video game",
@@ -197,7 +197,7 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
 
 ### Atualizar
 
-```json
+```javascript
 {
   "date": "2020-07-20T10:00:00Z",
   "description": "Updated product description",
