@@ -173,4 +173,44 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (24, 3);
 INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
 ```
 
+## Objetos JSON para inserir e atualizar um produto
 
+### Inserir
+
+```json
+{
+  "date": "2020-07-20T10:00:00Z",
+  "description": "The new generation PS5 video game",
+  "name": "PS5",
+  "imgUrl": "",
+  "price": 600.0,
+  "categories": [
+    {
+      "id": 1
+    },
+    {
+      "id": 3
+    }
+  ]
+}
+```
+
+### Atualizar
+
+```json
+{
+  "date": "2020-07-20T10:00:00Z",
+  "description": "Updated product description",
+  "name": "Updated product name",
+  "imgUrl": "",
+  "price": 600.0,
+  "categories": [
+    {
+      "id": 1
+    },
+    {
+      "id": 3
+    }
+  ]
+}
+```
