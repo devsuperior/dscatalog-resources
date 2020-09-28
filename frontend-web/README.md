@@ -1,5 +1,13 @@
 # Recursos para Frontend
 
+### Instalação do `NodeJS`:
+
+https://nodejs.org/pt-br
+
+### Instalação do `Yarn`:
+
+https://classic.yarnpkg.com/en/docs/install#mac-stable
+
 ### Criando projeto com o `create-react-app`:
 
 `npx create-react-app front-web --template typescript`
@@ -11,3 +19,9 @@
 ### Adicionando o `node-sass`:
 
 `npm install --save node-sass` ou `yarn add node-sass`
+
+### Alguns links para quem quiser aprofundar em algum conceito dito durante as aulas:
+
+#### Diferença entre `arrow functions` e `regular functions` no JavaScript:
+https://medium.com/better-programming/difference-between-regular-functions-and-arrow-functions-f65639aba256
+https://dev.to/ugglr/react-functional-components-const-vs-function-2kj9
