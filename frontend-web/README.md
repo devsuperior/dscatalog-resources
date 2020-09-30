@@ -22,6 +22,9 @@ https://classic.yarnpkg.com/en/docs/install#mac-stable
 
 ### Alguns links para quem quiser aprofundar em algum conceito dito durante as aulas:
 
-#### Diferença entre `arrow functions` e `regular functions` no JavaScript:
+- #### Diferença entre `arrow functions` e `regular functions` no JavaScript:
 https://medium.com/better-programming/difference-between-regular-functions-and-arrow-functions-f65639aba256
 https://dev.to/ugglr/react-functional-components-const-vs-function-2kj9
+
+- ### Documentação do React Router: 
+https://reactrouter.com/web/guides/quick-start
