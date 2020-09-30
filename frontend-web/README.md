@@ -20,7 +20,7 @@ https://classic.yarnpkg.com/en/docs/install#mac-stable
 
 `npm install --save node-sass` ou `yarn add node-sass`
 
-### Alguns links para quem quiser aprofundar em algum conceito dito durante as aulas:
+### Alguns links úteis para quem quiser aprofundar em algum conceito mencionado durante as aulas:
 
 - #### Diferença entre `arrow functions` e `regular functions` no JavaScript:
 https://medium.com/better-programming/difference-between-regular-functions-and-arrow-functions-f65639aba256
