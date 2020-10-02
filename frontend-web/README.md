@@ -28,3 +28,7 @@ https://dev.to/ugglr/react-functional-components-const-vs-function-2kj9
 
 - ### Documentação do React Router: 
 https://reactrouter.com/web/guides/quick-start
+
+- ### Primeiros passos no CSS grid layout:
+https://medium.com/red-ventures-br-tech/comece-usar-css-grid-%C3%A9-lindo-609313338e0b
+https://tableless.com.br/um-pouco-sobre-css-grid-layout/
