@@ -34,3 +34,5 @@ https://reactrouter.com/web/guides/quick-start
 https://medium.com/red-ventures-br-tech/comece-usar-css-grid-%C3%A9-lindo-609313338e0b
 
 https://tableless.com.br/um-pouco-sobre-css-grid-layout/
+
+https://www.felipefialho.com/blog/css-grid-e-flexbox-quando-utilizar/
