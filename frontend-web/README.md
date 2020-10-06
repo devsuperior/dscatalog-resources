@@ -36,3 +36,6 @@ https://medium.com/red-ventures-br-tech/comece-usar-css-grid-%C3%A9-lindo-609313
 https://tableless.com.br/um-pouco-sobre-css-grid-layout/
 
 https://www.felipefialho.com/blog/css-grid-e-flexbox-quando-utilizar/
+
+- ### Como formatar números/preços usando apenas JavaScript
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
