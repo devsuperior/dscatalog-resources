@@ -37,7 +37,7 @@ https://tableless.com.br/um-pouco-sobre-css-grid-layout/
 
 https://www.felipefialho.com/blog/css-grid-e-flexbox-quando-utilizar/
 
-- ### Configuração do Proxy no `create-react-app` para evitar problemas de CORS durante o desenvolvimento:
+- ### Guia para configuração do Proxy no `create-react-app` para evitar problemas de CORS durante o desenvolvimento:
 https://create-react-app.dev/docs/proxying-api-requests-in-development/
 
 - ### Como formatar números/preços usando apenas JavaScript
