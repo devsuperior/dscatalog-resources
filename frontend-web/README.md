@@ -20,6 +20,10 @@ https://classic.yarnpkg.com/en/docs/install#mac-stable
 
 `npm install --save node-sass` ou `yarn add node-sass`
 
+### Link do projeto no Figma: 
+
+https://www.figma.com/file/1n0aifcfatWv9ozp16XCrq/DSCatalog-Bootcamp?node-id=1%3A2012
+
 ### Alguns links úteis para quem quiser aprofundar em algum conceito mencionado durante as aulas:
 
 - #### Diferença entre `arrow functions` e `regular functions` no JavaScript:
