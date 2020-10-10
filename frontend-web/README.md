@@ -46,3 +46,8 @@ https://create-react-app.dev/docs/proxying-api-requests-in-development/
 
 - ### Como formatar números/preços usando apenas JavaScript
 https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+
+- ### `react-content-loader`
+https://github.com/danilowoz/react-content-loader
+https://skeletonreact.com/
+
