@@ -49,5 +49,6 @@ https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects
 
 - ### `react-content-loader`
 https://github.com/danilowoz/react-content-loader
+
 https://skeletonreact.com/
 
