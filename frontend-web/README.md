@@ -52,3 +52,5 @@ https://github.com/danilowoz/react-content-loader
 
 https://skeletonreact.com/
 
+- ### Conhecendo outras unidades de medida no CSS
+https://desenvolvimentoparaweb.com/css/unidades-css-rem-vh-vw-vmin-vmax-ex-ch/
