@@ -54,3 +54,6 @@ https://skeletonreact.com/
 
 - ### Conhecendo outras unidades de medida no CSS
 https://desenvolvimentoparaweb.com/css/unidades-css-rem-vh-vw-vmin-vmax-ex-ch/
+
+- ### Documentação do `React Router` sobre rotas aninhadas:
+https://reactrouter.com/web/example/nesting
