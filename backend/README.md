@@ -214,3 +214,16 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
   ]
 }
 ```
+
+## Seed para usuários e seus perfis
+```sql
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Alex', 'Brown', 'maria@gmail.com', '988888888', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Green', 'alex@gmail.com', '977777777', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_OPERATOR');
+INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+```
