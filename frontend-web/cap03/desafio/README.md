@@ -23,14 +23,21 @@ template *TypeScript*:
 
 ```npx create-react-app github-user-search \--template typescript```
 
+-------------------------------
+
 Link do protótipo no Figma: https://www.figma.com/file/NzeGEIb5oSAGtbu2BfvhDS/BDS-Cap3
 
-A API do Github para realizar o desafio é: https://api.github.com/users/NOME_USUÁRIO
+-------------------------------
 
+A API do Github para realizar o desafio é: https://api.github.com/users/NOME_USUÁRIO
 Em que, que no lugar de \"**NOME_USUÁRIO**\", deverá ser enviado o nome
 do usuário que foi preenchido no formulário da aplicação.
 
+-------------------------------
+
 Os componentes de \"Loaders\" já foram criados, e estão disponíveis em: https://github.com/devsuperior/dscatalog-resources/tree/master/frontend-web/cap03/desafio
+
+-------------------------------
 
 Existe uma parte do desafio, que é formatar a data do \"*Membro desde*\"
 que existe no layout. Como não foi mostrado isso durante as aulas, essa
