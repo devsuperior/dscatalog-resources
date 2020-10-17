@@ -14,16 +14,13 @@ envolve alguns dos principais conceitos passados até agora:
 
 -   Criar o layout baseado em um protótipo do Figma
 
--   Loaders
-    > ([[https://skeletonreact.com]{.ul}](https://skeletonreact.com))
+-   Loaders https://skeletonreact.com
 
 -   Rotas
 
-Link do protótipo no Figma:
-[[https://www.figma.com/file/NzeGEIb5oSAGtbu2BfvhDS/BDS-Cap3]{.ul}](https://www.figma.com/file/NzeGEIb5oSAGtbu2BfvhDS/BDS-Cap3)
+Link do protótipo no Figma:https://www.figma.com/file/NzeGEIb5oSAGtbu2BfvhDS/BDS-Cap3
 
-A API do Github para realizar o desafio é:
-[**[*https://api.github.com/users/*NOME_USUÁRIO]{.ul}**](https://api.github.com/users/NOME_USU%C3%81RIO)
+A API do Github para realizar o desafio é: https://api.github.com/users/NOME_USUÁRIO
 
 Em que, que no lugar de \"**NOME_USUÁRIO**\", deverá ser enviado o nome
 do usuário que foi preenchido no formulário da aplicação.
