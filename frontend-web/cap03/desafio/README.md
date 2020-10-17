@@ -18,10 +18,10 @@ trabalho envolve alguns dos principais conceitos passados até agora:
 
 -   Rotas
 
-O projeto deverá estar ser criado com o ```*create-react-app*```, usando o
+O projeto deverá estar ser criado com o ```create-react-app```, usando o
 template *TypeScript*:
 
-***npx create-react-app github-user-search \--template typescript***
+```npx create-react-app github-user-search \--template typescript```
 
 Link do protótipo no Figma: https://www.figma.com/file/NzeGEIb5oSAGtbu2BfvhDS/BDS-Cap3
 
