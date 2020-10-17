@@ -21,7 +21,7 @@ trabalho envolve alguns dos principais conceitos passados até agora:
 O projeto deverá estar ser criado com o ```create-react-app```, usando o
 template *TypeScript*:
 
-```npx create-react-app github-user-search \--template typescript```
+```npx create-react-app github-user-search --template typescript```
 
 -------------------------------
 
