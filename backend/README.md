@@ -240,3 +240,70 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 }
 ```
+
+## ConstraintValidator customizado
+#### Annotation
+```java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+
+@Constraint(validatedBy = UserInsertValidator.class)
+@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.RUNTIME)
+
+public @interface UserInsertValid {
+	String message() default "Validation error";
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+}
+```
+#### Validator
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.devsuperior.dscatalog.dto.UserInsertDTO;
+import com.devsuperior.dscatalog.entities.User;
+import com.devsuperior.dscatalog.repositories.UserRepository;
+import com.devsuperior.dscatalog.resources.exceptions.FieldMessage;
+
+public class UserInsertValidator implements ConstraintValidator<UserInsertValid, UserInsertDTO> {
+
+	@Autowired
+	private UserRepository repo;
+	
+	@Override
+	public void initialize(UserInsertValid ann) {
+	}
+
+	@Override
+	public boolean isValid(UserInsertDTO dto, ConstraintValidatorContext context) {
+		
+		List<FieldMessage> list = new ArrayList<>();
+		
+		User entity = repo.findByEmail(dto.getEmail());
+		if (entity != null) {
+			list.add(new FieldMessage("email", "Email já existente"));
+		}
+		
+		for (FieldMessage e : list) {
+			context.disableDefaultConstraintViolation();
+			context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
+					.addConstraintViolation();
+		}
+		return list.isEmpty();
+	}
+}
+```
