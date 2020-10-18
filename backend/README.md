@@ -36,73 +36,6 @@
 </dependency>
 ```
 
-## Arquivos de configuração
-
-### application.properties
-
-```
-spring.profiles.active=test
-
-spring.jpa.open-in-view=false
-```
-
-### application-test.properties
-
-```
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.username=sa
-spring.datasource.password=
-
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
-```
-
-### application-dev.properties
-
-```
-#spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
-#spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
-spring.datasource.username=postgres
-spring.datasource.password=1234567
-
-spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
-spring.jpa.hibernate.ddl-auto=none
-```
-
-### application-prod.properties
-
-```
-spring.datasource.url=${DATABASE_URL}
-
-spring.jpa.hibernate.ddl-auto=none
-spring.jpa.show-sql=false
-spring.jpa.properties.hibernate.format_sql=false
-```
-
-## Teste local para CORS
-
-```js
-fetch("https://seuprojeto.herokuapp.com/records", {
-  "headers": {
-    "accept": "*/*",
-    "accept-language": "en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7",
-    "sec-fetch-dest": "empty",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-site": "cross-site"
-  },
-  "referrer": "http://localhost:3000/records",
-  "referrerPolicy": "no-referrer-when-downgrade",
-  "body": null,
-  "method": "GET",
-  "mode": "cors",
-  "credentials": "omit"
-});
-```
-
 ## Parâmetros de paginação
 
 ```java
@@ -300,4 +233,88 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 		return list.isEmpty();
 	}
 }
+```
+
+## Passos para mudar master para main no Github
+```
+Commit master!
+
+git checkout -b main
+
+git push -u origin main
+
+git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+
+Settings -> Branches -> Switch default branch -> main
+
+git push origin --delete master
+
+git branch -a
+```
+
+## Arquivos de configuração
+
+#### application.properties
+
+```
+spring.profiles.active=test
+
+spring.jpa.open-in-view=false
+```
+
+#### application-test.properties
+
+```
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+```
+
+#### application-dev.properties
+
+```
+#spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
+#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
+#spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
+spring.datasource.username=postgres
+spring.datasource.password=1234567
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.hibernate.ddl-auto=none
+```
+
+#### application-prod.properties
+
+```
+spring.datasource.url=${DATABASE_URL}
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=false
+```
+
+## Teste local para CORS
+
+```js
+fetch("https://seuprojeto.herokuapp.com/records", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrer": "http://localhost:3000/records",
+  "referrerPolicy": "no-referrer-when-downgrade",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+});
 ```
