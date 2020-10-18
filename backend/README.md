@@ -280,9 +280,6 @@ import com.devsuperior.dscatalog.repositories.UserRepository;
 import com.devsuperior.dscatalog.resources.exceptions.FieldMessage;
 
 public class UserInsertValidator implements ConstraintValidator<UserInsertValid, UserInsertDTO> {
-
-	@Autowired
-	private UserRepository repo;
 	
 	@Override
 	public void initialize(UserInsertValid ann) {
@@ -293,10 +290,7 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 		
 		List<FieldMessage> list = new ArrayList<>();
 		
-		User entity = repo.findByEmail(dto.getEmail());
-		if (entity != null) {
-			list.add(new FieldMessage("email", "Email já existente"));
-		}
+		// Coloque aqui seus testes de validação, acrescentando objetos FieldMessage à lista
 		
 		for (FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();
