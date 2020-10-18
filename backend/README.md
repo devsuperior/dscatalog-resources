@@ -299,6 +299,25 @@ spring.jpa.show-sql=false
 spring.jpa.properties.hibernate.format_sql=false
 ```
 
+## Passos Heroku
+
+#### Preparar o projeto para implantação
+- Na pasta raiz do projeto, criar arquivo system.properties com o conteúdo:
+java.runtime.version=11
+- Mudar o perfil para "prod" e salvar um novo commit
+
+#### Implantar o sistema no Heroku
+- Criar app no Heroku e provisionar o banco Postgresql
+- Pegar a string de conexão à base de dados
+- Instanciar um servidor no seu pgAdmin com os dados de conexão
+- Executar o script de criação da base de dados
+- No terminal:
+```
+heroku git:remote -a <nome-do-app>
+git remote -v
+git subtree push --prefix backend heroku main
+```
+
 ## Teste local para CORS
 
 ```js
