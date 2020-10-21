@@ -29,11 +29,6 @@
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
-
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-security</artifactId>
-</dependency>
 ```
 
 ## Parâmetros de paginação
@@ -318,10 +313,49 @@ git remote -v
 git subtree push --prefix backend heroku main
 ```
 
+## Beans para token JWT
+```java
+@Bean
+public JwtAccessTokenConverter accessTokenConverter() {
+	JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
+	tokenConverter.setSigningKey("MY-JWT-SECRET");
+	return tokenConverter;
+}
+
+@Bean
+public JwtTokenStore tokenStore() {
+	return new JwtTokenStore(accessTokenConverter());
+}
+```
+
+## Beans para configuração de CORS
+```java
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+	CorsConfiguration corsConfig = new CorsConfiguration();
+	corsConfig.setAllowedOrigins(Arrays.asList("*"));
+	corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
+	corsConfig.setAllowCredentials(true);
+	corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+
+	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	source.registerCorsConfiguration("/**", corsConfig);
+	return source;
+}
+
+@Bean
+public FilterRegistrationBean<CorsFilter> corsFilter() {
+	FilterRegistrationBean<CorsFilter> bean 
+		= new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
+	bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+	return bean;
+}	
+```
+
 ## Teste local para CORS
 
 ```js
-fetch("https://seuprojeto.herokuapp.com/records", {
+fetch("https://seuprojeto.herokuapp.com", {
   "headers": {
     "accept": "*/*",
     "accept-language": "en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7",
@@ -329,7 +363,7 @@ fetch("https://seuprojeto.herokuapp.com/records", {
     "sec-fetch-mode": "cors",
     "sec-fetch-site": "cross-site"
   },
-  "referrer": "http://localhost:3000/records",
+  "referrer": "http://localhost:3000",
   "referrerPolicy": "no-referrer-when-downgrade",
   "body": null,
   "method": "GET",
