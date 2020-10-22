@@ -328,6 +328,24 @@ public JwtTokenStore tokenStore() {
 }
 ```
 
+## Deixando o Postman top
+
+Variáveis:
+- host: http://localhost:8080
+- client-id: dscatalog
+- client-secret: dscatalog123
+- username: leia@gmail.com
+- password: 123456
+- token: 
+
+Script para atribuir token à variável de ambiente do Postman:
+```js
+if (responseCode.code >= 200 && responseCode.code < 300) {
+    var json = JSON.parse(responseBody);
+    postman.setEnvironmentVariable('token', json.access_token);
+}
+```
+
 ## Beans para configuração de CORS
 ```java
 @Bean
@@ -350,24 +368,6 @@ public FilterRegistrationBean<CorsFilter> corsFilter() {
 	bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	return bean;
 }	
-```
-
-## Deixando o Postman top
-
-Variáveis:
-- host: http://localhost:8080
-- client-id: dscatalog
-- client-secret: dscatalog123
-- username: leia@gmail.com
-- password: 123456
-- token: 
-
-Script para atribuir token à variável de ambiente do Postman:
-```js
-if (responseCode.code >= 200 && responseCode.code < 300) {
-    var json = JSON.parse(responseBody);
-    postman.setEnvironmentVariable('token', json.access_token);
-}
 ```
 
 ## Teste local para CORS
