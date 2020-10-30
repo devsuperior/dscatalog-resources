@@ -36,73 +36,6 @@
 </dependency>
 ```
 
-## Arquivos de configuração
-
-### application.properties
-
-```
-spring.profiles.active=test
-
-spring.jpa.open-in-view=false
-```
-
-### application-test.properties
-
-```
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.username=sa
-spring.datasource.password=
-
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
-```
-
-### application-dev.properties
-
-```
-#spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
-#spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
-spring.datasource.username=postgres
-spring.datasource.password=1234567
-
-spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
-spring.jpa.hibernate.ddl-auto=none
-```
-
-### application-prod.properties
-
-```
-spring.datasource.url=${DATABASE_URL}
-
-spring.jpa.hibernate.ddl-auto=none
-spring.jpa.show-sql=false
-spring.jpa.properties.hibernate.format_sql=false
-```
-
-## Teste local para CORS
-
-```js
-fetch("https://seuprojeto.herokuapp.com/records", {
-  "headers": {
-    "accept": "*/*",
-    "accept-language": "en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7",
-    "sec-fetch-dest": "empty",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-site": "cross-site"
-  },
-  "referrer": "http://localhost:3000/records",
-  "referrerPolicy": "no-referrer-when-downgrade",
-  "body": null,
-  "method": "GET",
-  "mode": "cors",
-  "credentials": "omit"
-});
-```
-
 ## Parâmetros de paginação
 
 ```java
@@ -213,4 +146,251 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
     }
   ]
 }
+```
+
+## Seed para usuários e seus perfis
+```sql
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Alex', 'Brown', 'alex@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Green', 'maria@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_OPERATOR');
+INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+```
+
+## Configuração provisória para liberar todos endpoints
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/**");
+	}
+}
+```
+
+## ConstraintValidator customizado
+#### Annotation
+```java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+
+@Constraint(validatedBy = UserInsertValidator.class)
+@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.RUNTIME)
+
+public @interface UserInsertValid {
+	String message() default "Validation error";
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+}
+```
+#### Validator
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.devsuperior.dscatalog.dto.UserInsertDTO;
+import com.devsuperior.dscatalog.entities.User;
+import com.devsuperior.dscatalog.repositories.UserRepository;
+import com.devsuperior.dscatalog.resources.exceptions.FieldMessage;
+
+public class UserInsertValidator implements ConstraintValidator<UserInsertValid, UserInsertDTO> {
+	
+	@Override
+	public void initialize(UserInsertValid ann) {
+	}
+
+	@Override
+	public boolean isValid(UserInsertDTO dto, ConstraintValidatorContext context) {
+		
+		List<FieldMessage> list = new ArrayList<>();
+		
+		// Coloque aqui seus testes de validação, acrescentando objetos FieldMessage à lista
+		
+		for (FieldMessage e : list) {
+			context.disableDefaultConstraintViolation();
+			context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
+					.addConstraintViolation();
+		}
+		return list.isEmpty();
+	}
+}
+```
+
+## Passos para mudar master para main no Github
+```
+Commit master!
+
+git checkout -b main
+
+git push -u origin main
+
+git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+
+Settings -> Branches -> Switch default branch -> main
+
+git push origin --delete master
+
+git branch -a
+```
+
+## Arquivos de configuração
+
+#### application.properties
+
+```
+spring.profiles.active=test
+
+spring.jpa.open-in-view=false
+```
+
+#### application-test.properties
+
+```
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+```
+
+#### application-dev.properties
+
+```
+#spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
+#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
+#spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
+spring.datasource.username=postgres
+spring.datasource.password=1234567
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.hibernate.ddl-auto=none
+```
+
+#### application-prod.properties
+
+```
+spring.datasource.url=${DATABASE_URL}
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=false
+```
+
+## Passos Heroku
+
+#### Preparar o projeto para implantação
+- Na pasta raiz do projeto, criar arquivo system.properties com o conteúdo:
+java.runtime.version=11
+- Mudar o perfil para "prod" e salvar um novo commit
+
+#### Implantar o sistema no Heroku
+- Criar app no Heroku e provisionar o banco Postgresql
+- Pegar a string de conexão à base de dados
+- Instanciar um servidor no seu pgAdmin com os dados de conexão
+- Executar o script de criação da base de dados
+- No terminal:
+```
+heroku git:remote -a <nome-do-app>
+git remote -v
+git subtree push --prefix backend heroku main
+```
+
+## Beans para token JWT
+```java
+@Bean
+public JwtAccessTokenConverter accessTokenConverter() {
+	JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
+	tokenConverter.setSigningKey("MY-JWT-SECRET");
+	return tokenConverter;
+}
+
+@Bean
+public JwtTokenStore tokenStore() {
+	return new JwtTokenStore(accessTokenConverter());
+}
+```
+
+## Deixando o Postman top
+
+Variáveis:
+- host: http://localhost:8080
+- client-id: dscatalog
+- client-secret: dscatalog123
+- username: leia@gmail.com
+- password: 123456
+- token: 
+
+Script para atribuir token à variável de ambiente do Postman:
+```js
+if (responseCode.code >= 200 && responseCode.code < 300) {
+    var json = JSON.parse(responseBody);
+    postman.setEnvironmentVariable('token', json.access_token);
+}
+```
+
+## Beans para configuração de CORS
+```java
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+	CorsConfiguration corsConfig = new CorsConfiguration();
+	corsConfig.setAllowedOrigins(Arrays.asList("*"));
+	corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
+	corsConfig.setAllowCredentials(true);
+	corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+
+	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	source.registerCorsConfiguration("/**", corsConfig);
+	return source;
+}
+
+@Bean
+public FilterRegistrationBean<CorsFilter> corsFilter() {
+	FilterRegistrationBean<CorsFilter> bean 
+		= new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
+	bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+	return bean;
+}	
+```
+
+## Teste local para CORS
+
+```js
+fetch("https://seuprojeto.herokuapp.com", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrer": "http://localhost:3000",
+  "referrerPolicy": "no-referrer-when-downgrade",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+});
 ```
