@@ -30,10 +30,9 @@
 	<artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
 
-<!-- Dependência para Spring Security com OAuth 2 atualizada -->
 <dependency>
-	<groupId>org.springframework.security.oauth.boot</groupId>
-	<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 ```
 
