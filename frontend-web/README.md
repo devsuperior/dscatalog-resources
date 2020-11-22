@@ -24,6 +24,10 @@ https://classic.yarnpkg.com/en/docs/install#mac-stable
 
 https://www.figma.com/file/1n0aifcfatWv9ozp16XCrq/DSCatalog-Bootcamp?node-id=1%3A2012
 
+### Conteúdo do arquivo `_redirects`:
+
+`/*  /index.html  200`
+
 ### Alguns links úteis para quem quiser aprofundar em algum conceito mencionado durante as aulas:
 
 - #### Diferença entre `arrow functions` e `regular functions` no JavaScript:
