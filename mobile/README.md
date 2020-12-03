@@ -1,0 +1,131 @@
+## Guia de Instalação e Configuração do ambiente React-Native/EXPO CLI 
+Neste guia, você encontrará os passos necessários a instalação e configuração do seu ambiente React-Native/EXPO CLI.
+Selecione o seu sistema operacional em um dos links abaixo:
+
+[Instalação no Linux](#linux) <br>
+[Instalação no MacOS](#mac) <br>
+[Instalação no Windows](#windows) <br>
+
+
+
+
+
+## <a name="linux"></a>Linux
+#### Este guia tomará como base uma distribuição `Ubuntu de 64bits` e o `apt-get` como gerenciador de pacotes.
+
+
+Com o objetivo de ter um ambiente de desenvolvimento completo que atenda tanto a projetos com ReactNative quando com ExpoCLI. Levando em consideração a configuração de um ambiente de testes com emulador do Android Studio, o Java Development Kit (JDK) também deverá ser instalado.
+
+
+#### NodeJS
+Seguindo as orientações do NodeSource primeiramente precisaremos baixar o Node via `curl` para isto basta excuta os comandos a seguir no terminal do seu computador:<br>
+
+> `curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -` <br>
+
+Em seguida, executaremos o `apt-get` para que a instalação seja efetuada:
+
+> `sudo apt-get install -y nodejs`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `node --version` no seu terminal.
+A versão do  NodeJS instalada no seu computador deverá ser retornada neste comando.
+
+Se você utiliza uma distro diferente de ubuntu e que não seja baseada no Debian, recomendo acessar a página do NodeJS.org para visualizar os comandos de instalação do Node em seu ambiente.
+
+> https://nodejs.org/en/download/package-manager/
+
+#### Yarn
+Outra observação importante é que junto com o NodeJS vem instalado o NPM que nada mais é do que o `node package manager` ou gerenciador de pacotes do Node. É com ele que você instala as bibliotecas e dependencias dos seus projetos sob o node.
+Neste curso utilizarei o `yarn` uma biblioteca também utilizada na gestão de pacotes do node.
+O `yarn` é tradicionalmente mais rápido se comparado com o `npm` além de sua sintaxe de utilização ser mais simples e menos ambígua. Para instalar o `yarn` execute o comando a seguir no seu terminal:
+> `npm install -g yarn`
+
+Note que o parâmetro `-g` adicionado ao `npm install` indica que o yarn será utilizado globalmente no seu terminal, dispensando o uso do `npm`.
+#### JDK
+O `react-native` requer a última revisão da versão 8 do JDK, dessa forma temos duas opções de instalação, a recomendação é que se utilize o OpenJDK da AdoptOpenJDK, o procedimento de instalação é bem simples, basta executar o seguinte comando no seu terminal:
+>`sudo apt-get install openjdk-8-jre`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `java -version`no seu terminal.
+A versão do Java instalada no seu computador deverá ser retornada neste comando. 
+
+#### Watchman
+O WatchMan é uma ferramenta do Facebook que monitora mudanças no sistema de arquivos, utilizado como apoio na ferramenta de fast-refresh, o que recarrega sua tela quando uma modificação no seu código é identificado.
+
+O binário de instalação GUI pode ser encontrado em: 
+> https://github.com/facebook/watchman/releases/
+
+Como o instalador é GUI, basta clicar em avançar e concluir para executar o processo de instalação.
+
+### EXPO CLI
+Por último e não menos importante, precisamos instalar o `cli` do expo na nossa maquina local, o procedimento é extremamente simples, basta executar um dos seguintes comandos no  terminal do seu computador:
+
+> npm install -g expo-cli
+
+ou
+> yarn global add expo-cli
+ 
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `expo --version`no seu terminal.
+A versão do EXPO instalada no seu computador deverá ser retornada neste comando. 
+
+### Para instalar o Android Studio  [clique aqui](#androidstudio)
+
+## <a name="mac"></a>MacOs
+## <a name="windows"></a>Windows
+
+
+## <a name="androidstudio"></a> Android Studio
+
+Agora que nosso ambiente já possui o Java e o NodeJS, chegou a hora de instalar o Android Studio, o objetivo desta instalação é disponibilizar o emulador virtual do android (`android virtual device - AVD`) para executar suas aplicações móveis com `ReactNative/Expo` . Utilize o link a seguir para fazer o download atualizado do Android Studio:
+> https://developer.android.com/studio/index.html
+
+A instalação do Android Studio segue com uma GUI (Graphic User Interface), dessa forma ao clicar em `next` certifique-se de que as seguintes opções, caso disponíveis, estejam habilitadas:
+
+ - Android SDK
+ - Android SDK Platform
+ - Android Virtual Device
+
+> Caso algum desses itens estejam desativados, cinzas ou não seja possível selecioná-los, poderemos instalá-los manualmente até o final deste processo.
+
+Por padrão o Android Studio instalará a última SDK disponível, porém o `react-native` requer o SDK `Android 10 (Q)`. Para isto antes mesmo de iniciar algum projeto no Android Studio, na tela de boas-vindas, clicaremos em:
+> Configure -> SDK Manager
+
+Certifique-se de que a opçao `show Package Details` ,presente no canto inferior direito da janela, esteja habilitado. Além do `Android 10 (Q)` selecionaremos: 
+
+ - Android SDK Platform 29
+ - Intel x86 Atom_64 System Image
+
+E clicaremos na opção `apply`, com isto uma janela de download desses itens deverá surgir na sua tela. 
+
+Após o download dos itens selecionados cujo o tempo pode variar de acordo com a velocidade de sua conexão com a internet, vá até a guia `SDK Tools` e também clique em `show package details` no canto inferior direito da janela, certifique-se de que em `Android SDK Build-Tools` a opção `29.0.2` esteja selecionado. Ao clicar em `apply` novamente, os novos pacotes selecionados serão instalados no seu computador.
+
+Para finalizar a instalação do Android Studio precisaremos adicionar ANDROID_HOME como variável de ambiente no seu computador, ainda no seu terminal, será necessário adicionar ao bash profile as seguintes informações: 
+>`export ANDROID_HOME=$HOME/Android/Sdk`
+> `export PATH=$PATH:$ANDROID_HOME/emulator`
+>` export PATH=$PATH:$ANDROID_HOME/tools`
+> `export PATH=$PATH:$ANDROID_HOME/tools/bin`
+> `export PATH=$PATH:$ANDROID_HOME/platform-tools`
+
+Note que para isto basta abrir o seu bash_profile em modo de edição, caso o seu utilize o bash como shell, apenas execute:
+> nano $HOME/.bash_profile
+> 
+ou
+> nano $HOME/.bashrc
+
+caso você esteja utilizando um `shell` diferente do bash, sugiro consultar na documentação sobre a adição de configurações ao seu `shell`.
+
+
+#### Android AVD
+
+Com o objetivo de simplificar os testes de sua aplicação com ReactNative, você pode rodar a sua aplicação em um `avd` ou `android virtual device` lembrando que o Expo fornece o ExpoClient para aplicações que utilizem o EXPO, dessa forma você consegue testar sem utilizar um emulador e diretamente no seu dispositivo físico, tornando a experiência de desenvolvimento bem mais proxima da realidade do usuário.
+
+Para criar um `avd` ainda na tela de boas-vindas do Android Studio, clique em:
+> `Configure -> AVD Manager`
+
+A janela do Android Virtual Device Manager será aberta na tela e ao centro teremos o botão `+ Create Virtual Device` utilizaremos ele para criar o nosso novo dispositivo de testes emulados.
+
+Como  você pode ver, podemos simular diversos dispositivos do ecossistema Android: TV's, Tablets, Automotivo, Wearebles e claro os Smartphones.
+
+Com a opção `phones` selecionada escolha a opção de dispositivo que mais te agradar, eu particularmente gosto do simulador do `Pixel 2` pois ele me fornece acesso a Google Play Store, algo de vital importância na implementações de `features` como notificações push, in-app-purchase, etc. 
+
+Clique em `next` e escolha a imagem de sistema que será instalada no seu disposivo virtual, eu particulamente recomendo o `Android Q`  e caso ele ainda não esteja na sua máquna, um botão de download será adicionado a frente da versão que você deseja, certifique-se de que a imagem esteja baixada antes de clicar em `next`.
+
+Neste ponto você irá revisar algumas configurações do seu `avd` além de definir um nome simbólico pra ele, nas configurações não podemos alterar muito além de escolher a orientação (retrato ou paisagem) e se o frame (ou a carcaça) do dispositivo será exibido. Basta clicar em `finish` e seu `avd` irá aparecer na listagem de dispositivos virtuais.
