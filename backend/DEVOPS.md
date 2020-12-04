@@ -266,9 +266,9 @@ docker search <usuario>
 - Rodar seed
 
 ## Passos finais de implantação manual na AWS
+- Subir imagem para Docker Hub
 - Criar container do app que se conecta ao banco RDS
   - Salvar comando RUN
-- Subir imagem para Docker Hub
 - Rodar comando RUN na instância EC2
 ```
 docker run -p 80:8080 --name dscatalog-aws -e CLIENT_ID=dscatalog -e CLIENT_SECRET=dscatalog123 -e JWT_SECRET=MY-JWT-SECRET -e JWT_DURATION=86400 -e DATABASE_URL= acenelio/dscatalog:v1
