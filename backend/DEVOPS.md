@@ -239,6 +239,7 @@ docker search <usuario>
   - AWS -> EC2 -> Executar instância -> Ubuntu Server 20.04
   - t2 micro -> Next -> Next -> Next -> Next
   - Baixar key pair
+  - Liberar HTTP na porta 80
 
 ## Acessar instância EC2 via SSH e instalar Docker
 - Logar no AWS CLI
@@ -269,6 +270,9 @@ docker search <usuario>
   - Salvar comando RUN
 - Subir imagem para Docker Hub
 - Rodar comando RUN na instância EC2
+```
+docker run -p 80:8080 --name dscatalog-aws -e CLIENT_ID=dscatalog -e CLIENT_SECRET=dscatalog123 -e JWT_SECRET=MY-JWT-SECRET -e JWT_DURATION=86400 -e DATABASE_URL= acenelio/dscatalog:v1
+```
 
 ## CI/CD com Github e Travis
 (favor aguardar)
@@ -278,4 +282,3 @@ docker search <usuario>
 
 ## Docker Compose
 (favor aguardar)
-
