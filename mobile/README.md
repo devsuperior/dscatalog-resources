@@ -69,7 +69,82 @@ A versão do EXPO instalada no seu computador deverá ser retornada neste comand
 ### Para instalar o Android Studio  [clique aqui](#androidstudio)
 
 ## <a name="mac"></a>MacOs
+
 ## <a name="windows"></a>Windows
+#### Este guia tomará como base a última versão disponível do Windows 10 de 64 bits
+
+Para configurar o ambiente de desenvolvimento ideal ao ReactNative/EXPO CLI no Windows, alguns passos adicionais são necessários se comparados a instalação dos outros Sistemas Operacionais, acontece que dos três sistemas, o Windows atualmente é o que vem menos preparado para um desenvolvedor e mais focado no usuário final.
+
+#### Gerenciador de Pacotes
+O primeiro item do qual precisaremos é um gerenciador de pacotes, isso se faz necessário porque conforme dito anteriormente o windows não provê um ambiente de desenvolvimento amigável em um primeiro momento.
+Conforme a recomendação do staff do React Native, iremos utilizar a `chocolatey`. Para mais informações sobre este gerenciador de pacotes acesse: 
+> https://chocolatey.org/
+
+Ainda no site do `Chocolatey` clique no botão `Get Started`. Na secção `Step 2` primeiramente temos os requisitos mínimos necessários para instalação do gerenciador de pacotes. 
+
+Exscute o `Power Shell`do windows no modo **administrativo**. Em seguida execute o seguinte comando no `power shell`que está aberto:
+> `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))`
+
+É um comando extenso mas que prepara o seu dispositivo para baixar e instalar o gerenciador, além de realizar a instalação do mesmo. Note que o tempo de instalação pode variar conforme a velocidade da sua rede de internet.
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `choco`no seu terminal.
+A versão do `chocolatey` instalada no seu computador deverá ser retornada neste comando. 
+
+#### NodeJS
+O procedimento de instalação do NodeJS será similar as outras plataformas, feitos por `package managers` porém, a sintaxe para o uso no caso do `chocolatey` é que muda. Execute o seguinte comando no `power shell` que está aberto:
+> `choco install nodejs.install`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `node --version`no seu terminal.
+A versão do node instalada no seu computador deverá ser retornada neste comando. 
+
+#### Yarn
+Outra observação importante é que junto com o NodeJS vem instalado o NPM que nada mais é do que o `node package manager` ou gerenciador de pacotes do Node. É com ele que você instala as bibliotecas e dependencias dos seus projetos sob o node.
+Neste curso utilizarei o `yarn` uma biblioteca também utilizada na gestão de pacotes do node.
+O `yarn` é tradicionalmente mais rápido se comparado com o `npm` além de sua sintaxe de utilização ser mais simples e menos ambígua. Para instalar o `yarn` execute o comando a seguir no seu terminal:
+> `npm install -g yarn`
+
+#### JDK
+O `react-native` requer a última revisão da versão 8 do JDK, dessa forma temos duas opções de instalação, a recomendação é que se utilize o OpenJDK da AdoptOpenJDK, o procedimento de instalação é bem simples, basta executar o seguinte comando no seu terminal:
+>`choco install openjdk8`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `java -version`no seu terminal.
+A versão do Java instalada no seu computador deverá ser retornada neste comando. 
+
+### Para instalar o Android Studio  [clique aqui](#androidstudio)
+
+Após a instalação do JDK e do Android Studio, é necessário adicionar ele como variável de ambiente do sistema operacional, com isso o jdk estará habilitado para ser utilizado globalmente na nossa aplicação. Para isto execute os seguintes passos:
+* Abra o `Painel de Controle` do Windows
+* Clique em `Contas de Usuário`
+* Clique em `Alterar minhas variáveis de ambiente`
+* Clique no botão `Novo` em **variáveis de usuário** .
+* Crie uma variável de nome `ANDROID_HOME` e adicione o caminho do seu SDK. 
+
+Por padrão o caminho de instalação é `%LOCALAPPDATA%\Android\Sdk` .
+
+Ainda nas variáveis de ambiente, iremos editar a variável existente de nome `Path` para isto clique em `path` e clique em editar, em seguida clique no botão `novo` e adicione o `path` do `platform-tools` que foi instalado junto ao SDK e o Android Studio.
+
+Por padrão o caminho de instalação é `%LOCALAPPDATA%\Android\Sdk\platform-tools`
+
+### EXPO CLI
+Por último e não menos importante, precisamos instalar o `cli` do expo na nossa maquina local, o procedimento é extremamente simples, basta executar um dos seguintes comandos no  terminal do seu computador:
+
+> npm install -g expo-cli
+
+ou
+
+> yarn global add expo-cli
+ 
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `expo --version`no seu terminal.
+A versão do EXPO instalada no seu computador deverá ser retornada neste comando. 
+
+<br> 
+
+**Com isso teremos o nosso ambiente de desenvolvimento ReactNative/EXPO CLI preparado no sistema operacional Windows.**
+
+<br><br>
+<br>
+<br>
+<br>
 
 
 ## <a name="androidstudio"></a> Android Studio
