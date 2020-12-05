@@ -40,12 +40,15 @@ O `yarn` é tradicionalmente mais rápido se comparado com o `npm` além de sua 
 > `npm install -g yarn`
 
 Note que o parâmetro `-g` adicionado ao `npm install` indica que o yarn será utilizado globalmente no seu terminal, dispensando o uso do `npm`.
+
 #### JDK
 O `react-native` requer a última revisão da versão 8 do JDK, dessa forma temos duas opções de instalação, a recomendação é que se utilize o OpenJDK da AdoptOpenJDK, o procedimento de instalação é bem simples, basta executar o seguinte comando no seu terminal:
 >`sudo apt-get install openjdk-8-jre`
 
 Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `java -version`no seu terminal.
 A versão do Java instalada no seu computador deverá ser retornada neste comando. 
+
+### Para instalar o Android Studio  [clique aqui](#androidstudio)
 
 #### Watchman
 O WatchMan é uma ferramenta do Facebook que monitora mudanças no sistema de arquivos, utilizado como apoio na ferramenta de fast-refresh, o que recarrega sua tela quando uma modificação no seu código é identificado.
@@ -66,9 +69,62 @@ ou
 Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `expo --version`no seu terminal.
 A versão do EXPO instalada no seu computador deverá ser retornada neste comando. 
 
-### Para instalar o Android Studio  [clique aqui](#androidstudio)
 
 ## <a name="mac"></a>MacOs
+
+O processo de instalação e configuração o ambiente de desenvolvimento ReactNative / Expo CLI no OSX é similar aos outros processos de instalação, entretando o MacOS é o unico sistema operacional no qual temos o emulador do iPhone disponível, o que torna o ambiente agradável aos desenvolvedores de todos os tipos.
+
+#### Homebrew 
+O gerenciador de pacotes que utilizaremos para as dependências exclusivas ao sistema operacional será o HomeBrew.  Com ele poderemos instalar as bibliotecas e utilitários que antecedem a configuração do ReactNative/EXPO CLI no seu dispositivo. Para efetuar a instalação do EXPO CLI no seu computador, execute o seguinte comando no terminal: 
+
+> `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+Este comando será responsável por  baixar e instalar o HomeBrew no seu computador, o tempo de instalação pode variar conforme a velocidade da sua conexão com a internet.
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `brew --version`no seu terminal.
+A versão do `brew` instalada no seu computador deverá ser retornada neste comando. 
+
+#### NodeJS
+Com o auxílio do brew instalaremos o nodeJS, para isto execute o seguinte comando no terminal do seu computador: 
+
+> `brew install node`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `node --version` no seu terminal.  
+A versão do NodeJS instalada no seu computador deverá ser retornada neste comando.
+
+#### WatchMan
+Ainda utilizando o brew instalaremos o WatchMan que é a ferramenta que monitora mudanças no seu sistema de arquivos e é utilizado com o `fast-refresh` para recarregar o app sempre que for necessário. Para executar a instalação do WatchMan no seu computador, execute o seguinte comando no seu terminal:
+
+> `brew install watchman`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `watchman --version` no seu terminal.  
+A versão do WatchMan instalada no seu computador deverá ser retornada neste comando.
+
+#### JDK
+
+O `react-native` requer a última revisão da versão 8 do JDK, dessa forma temos duas opções de instalação, a recomendação é que se utilize o OpenJDK da AdoptOpenJDK, o procedimento de instalação é bem simples, basta executar o seguinte comando no seu terminal:
+>`brew cask install adoptopenjdk/openjdk/adoptopenjdk8`
+
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `java -version`no seu terminal.
+A versão do Java instalada no seu computador deverá ser retornada neste comando. 
+
+### Para instalar o Android Studio  [clique aqui](#androidstudio)
+
+### EXPO CLI
+Por último e não menos importante, precisamos instalar o `cli` do expo na nossa maquina local, o procedimento é extremamente simples, basta executar um dos seguintes comandos no  terminal do seu computador:
+
+> npm install -g expo-cli
+
+ou
+
+> yarn global add expo-cli
+ 
+Para identificar se o processo de instalação ocorreu com sucesso, execute o comando `expo --version`no seu terminal.
+A versão do EXPO instalada no seu computador deverá ser retornada neste comando. 
+
+
+**Com isso teremos o nosso ambiente de desenvolvimento ReactNative/EXPO CLI preparado no sistema operacional Macintosh.**
+
 
 ## <a name="windows"></a>Windows
 #### Este guia tomará como base a última versão disponível do Windows 10 de 64 bits
@@ -172,6 +228,8 @@ E clicaremos na opção `apply`, com isto uma janela de download desses itens de
 
 Após o download dos itens selecionados cujo o tempo pode variar de acordo com a velocidade de sua conexão com a internet, vá até a guia `SDK Tools` e também clique em `show package details` no canto inferior direito da janela, certifique-se de que em `Android SDK Build-Tools` a opção `29.0.2` esteja selecionado. Ao clicar em `apply` novamente, os novos pacotes selecionados serão instalados no seu computador.
 
+
+#### Caso você esteja utilizando MacOS ou Linux, execute o seguinte passo:
 Para finalizar a instalação do Android Studio precisaremos adicionar ANDROID_HOME como variável de ambiente no seu computador, ainda no seu terminal, será necessário adicionar ao bash profile as seguintes informações: 
 >`export ANDROID_HOME=$HOME/Android/Sdk`
 > `export PATH=$PATH:$ANDROID_HOME/emulator`
