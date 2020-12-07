@@ -275,7 +275,58 @@ docker run -p 80:8080 --name dscatalog-aws -e CLIENT_ID=dscatalog -e CLIENT_SECR
 ```
 
 ## CI/CD com Github e Travis
-(favor aguardar)
+
+**Atenção**: O .gitignore do back end não pode estar ignorando o mvnw
+
+### Visão geral de CI/CD
+
+https://www.redhat.com/pt-br/topics/devops/what-is-ci-cd
+
+Integração contínua: Build -> Tests -> Merge
+
+Entrega contínua: release no repositório (Git / Container)
+
+Implantação contínua: implantação automática em produção
+
+### Caso 1:
+
+- Login com Github
+- Home -> + My Repositories -> Selecione o repositório Git
+- Repositorio Travis -> Copiar código MD para README
+
+```
+language: java
+jdk:
+  - openjdk11
+before_install:
+  - cd backend
+  - chmod +x mvnw
+```
+
+### Caso 2:
+
+- Repositorio Travis -> More options -> Settings -> (configurar variáveis de ambiente: usuário e senha do Docker Hub)
+
+```
+language: java
+jdk:
+  - openjdk11
+before_install:
+  - cd backend
+  - chmod +x mvnw
+script:
+  - docker build -t dscatalog:latest .
+before_deploy:
+  echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USER" --password-stdin
+deploy:
+  provider: script
+  script:
+    docker tag dscatalog:latest $DOCKERHUB_USER/dscatalog:latest;
+    docker push $DOCKERHUB_USER/dscatalog;
+  on:
+    branch: main
+```
+
 
 ## CI/CD com Github Actions e Heroku
 (favor aguardar)
