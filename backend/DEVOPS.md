@@ -314,6 +314,7 @@ jdk:
 before_install:
   - cd backend
   - chmod +x mvnw
+  - ./mvnw clean package
 script:
   - docker build -t dscatalog:latest .
 before_deploy:
