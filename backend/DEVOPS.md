@@ -239,6 +239,7 @@ docker search <usuario>
   - AWS -> EC2 -> Executar instância -> Ubuntu Server 20.04
   - t2 micro -> Next -> Next -> Next -> Next
   - Baixar key pair
+  - Liberar HTTP na porta 80
 
 ## Acessar instância EC2 via SSH e instalar Docker
 - Logar no AWS CLI
@@ -265,17 +266,71 @@ docker search <usuario>
 - Rodar seed
 
 ## Passos finais de implantação manual na AWS
+- Subir imagem para Docker Hub
 - Criar container do app que se conecta ao banco RDS
   - Salvar comando RUN
-- Subir imagem para Docker Hub
 - Rodar comando RUN na instância EC2
+```
+docker run -p 80:8080 --name dscatalog-aws -e CLIENT_ID=dscatalog -e CLIENT_SECRET=dscatalog123 -e JWT_SECRET=MY-JWT-SECRET -e JWT_DURATION=86400 -e DATABASE_URL= acenelio/dscatalog:v1
+```
 
 ## CI/CD com Github e Travis
-(favor aguardar)
+
+**Atenção**: O .gitignore do back end não pode estar ignorando o mvnw
+
+### Visão geral de CI/CD
+
+https://www.redhat.com/pt-br/topics/devops/what-is-ci-cd
+
+Integração contínua: Build -> Tests -> Merge
+
+Entrega contínua: release no repositório (Git / Container)
+
+Implantação contínua: implantação automática em produção
+
+### Caso 1:
+
+- Login com Github
+- Home -> + My Repositories -> Selecione o repositório Git
+- Repositorio Travis -> Copiar código MD para README
+
+```
+language: java
+jdk:
+  - openjdk11
+before_install:
+  - cd backend
+  - chmod +x mvnw
+```
+
+### Caso 2:
+
+- Repositorio Travis -> More options -> Settings -> (configurar variáveis de ambiente: usuário e senha do Docker Hub)
+
+```
+language: java
+jdk:
+  - openjdk11
+before_install:
+  - cd backend
+  - chmod +x mvnw
+  - ./mvnw clean package
+script:
+  - docker build -t dscatalog:latest .
+before_deploy:
+  echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USER" --password-stdin
+deploy:
+  provider: script
+  script:
+    docker tag dscatalog:latest $DOCKERHUB_USER/dscatalog:latest;
+    docker push $DOCKERHUB_USER/dscatalog;
+  on:
+    branch: main
+```
+
 
 ## CI/CD com Github Actions e Heroku
 (favor aguardar)
 
 ## Docker Compose
 (favor aguardar)
-
