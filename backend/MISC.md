@@ -64,3 +64,42 @@
     }
 ]
 ```
+
+### Códigos padrão
+```
+aws.access_key_id=${AWS_KEY}
+aws.secret_access_key=${AWS_SECRET}
+s3.bucket=${DSCATALOG_BUCKET_NAME}
+s3.region=${DSCATALOG_BUCKET_REGION}
+```
+
+```
+@Service
+public class S3Service {
+
+	private static Logger LOG = LoggerFactory.getLogger(S3Service.class);
+
+	@Autowired
+	private AmazonS3 s3client;
+
+	@Value("${s3.bucket}")
+	private String bucketName;
+
+	public void uploadFile(String localFilePath) {
+		try {
+			File file = new File(localFilePath);
+			LOG.info("Upload start");
+			s3client.putObject(new PutObjectRequest(bucketName, "test.jpg", file));
+			LOG.info("Upload end");
+		}
+		catch (AmazonServiceException e) {
+			LOG.info("AmazonServiceException: " + e.getErrorMessage());
+			LOG.info("Status code: " + e.getErrorCode());
+		}
+		catch (AmazonClientException e) {
+			LOG.info("AmazonClientException: " +  e.getMessage());
+		}
+	}
+}
+```
+
