@@ -61,3 +61,6 @@ https://desenvolvimentoparaweb.com/css/unidades-css-rem-vh-vw-vmin-vmax-ex-ch/
 
 - ### Documentação do `React Router` sobre rotas aninhadas:
 https://reactrouter.com/web/example/nesting
+
+- ## MIME types
+https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types/Complete_list_of_MIME_types
