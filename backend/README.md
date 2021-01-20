@@ -356,7 +356,7 @@ if (responseCode.code >= 200 && responseCode.code < 300) {
 @Bean
 public CorsConfigurationSource corsConfigurationSource() {
 	CorsConfiguration corsConfig = new CorsConfiguration();
-	corsConfig.setAllowedOrigins(Arrays.asList("*"));
+	corsConfig.setAllowedOriginPatterns(Arrays.asList("*"));
 	corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
 	corsConfig.setAllowCredentials(true);
 	corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
