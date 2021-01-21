@@ -64,3 +64,6 @@ https://reactrouter.com/web/example/nesting
 
 - ## MIME types
 https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types/Complete_list_of_MIME_types
+
+- ## React Draft WYSIWYG
+https://github.com/jpuri/react-draft-wysiwyg
