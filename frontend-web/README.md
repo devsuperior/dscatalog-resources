@@ -67,3 +67,6 @@ https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types/C
 
 - ## React Draft WYSIWYG
 https://github.com/jpuri/react-draft-wysiwyg
+
+- ## React Currency Input Field Component
+https://github.com/cchanxzy/react-currency-input-field
