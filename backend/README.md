@@ -38,11 +38,6 @@ https://gist.github.com/acenelio/8292b51c23c02b353a478c2b0bd8d85e
 	<artifactId>spring-boot-starter-test</artifactId>
 	<scope>test</scope>
 </dependency>
-
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-security</artifactId>
-</dependency>
 ```
 
 ## Parâmetros de paginação
