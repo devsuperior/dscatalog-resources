@@ -68,5 +68,11 @@ https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Basico_sobre_HTTP/MIME_types/C
 - ## React Draft WYSIWYG
 https://github.com/jpuri/react-draft-wysiwyg
 
+- ## DraftJS: Import HTML to ContentState
+https://github.com/sstur/draft-js-utils/tree/master/packages/draft-js-import-html
+
 - ## React Currency Input Field Component
 https://github.com/cchanxzy/react-currency-input-field
+
+
+
