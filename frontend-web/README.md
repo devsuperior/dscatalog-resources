@@ -74,5 +74,6 @@ https://github.com/sstur/draft-js-utils/tree/master/packages/draft-js-import-htm
 - ## React Currency Input Field Component
 https://github.com/cchanxzy/react-currency-input-field
 
-
+- ## React Paginate
+https://github.com/AdeleD/react-paginate
 
