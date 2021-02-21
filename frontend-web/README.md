@@ -77,3 +77,6 @@ https://github.com/cchanxzy/react-currency-input-field
 - ## React Paginate
 https://github.com/AdeleD/react-paginate
 
+- ## O que é Memoization ?
+https://chialunwu.medium.com/wtf-is-memoization-a2979594fb2a
+http://cangaceirojavascript.com.br/funcoes-velozes-com-memoization-pattern/
