@@ -79,4 +79,10 @@ https://github.com/AdeleD/react-paginate
 
 - ## O que é Memoization ?
 https://chialunwu.medium.com/wtf-is-memoization-a2979594fb2a
+
 http://cangaceirojavascript.com.br/funcoes-velozes-com-memoization-pattern/
+
+- ## Entendendo o React Hook useCallback
+https://pt-br.reactjs.org/docs/hooks-reference.html#usecallback
+
+https://dmitripavlutin.com/dont-overuse-react-usecallback/
