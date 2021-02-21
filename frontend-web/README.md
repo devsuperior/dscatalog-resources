@@ -85,4 +85,6 @@ http://cangaceirojavascript.com.br/funcoes-velozes-com-memoization-pattern/
 - ## Entendendo o React Hook useCallback
 https://pt-br.reactjs.org/docs/hooks-reference.html#usecallback
 
+https://medium.com/@devjpnobrega/primeiros-passos-com-react-hooks-usememo-e-usecallback-13d54da4f9ba
+
 https://dmitripavlutin.com/dont-overuse-react-usecallback/
