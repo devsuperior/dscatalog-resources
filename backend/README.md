@@ -531,3 +531,17 @@ public class ProductResourceTests {
 	}	
 }
 ```
+
+## Variáveis de ambiente básicas depois de adicionar segurança
+
+```
+spring.profiles.active=${APP_PROFILE:test}
+
+spring.jpa.open-in-view=false
+
+security.oauth2.client.client-id=${CLIENT_ID:dscatalog}
+security.oauth2.client.client-secret=${CLIENT_SECRET:dscatalog123}
+
+jwt.secret=${JWT_SECRET:MY-JWT-SECRET}
+jwt.duration=${JWT_DURATION:86400}
+```
