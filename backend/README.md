@@ -285,7 +285,7 @@ spring.h2.console.path=/h2-console
 #spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
 #spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
+spring.datasource.url=jdbc:postgresql://localhost:5432/dscatalog
 spring.datasource.username=postgres
 spring.datasource.password=1234567
 
