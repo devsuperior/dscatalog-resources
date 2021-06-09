@@ -289,6 +289,7 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
 spring.datasource.username=postgres
 spring.datasource.password=1234567
 
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 spring.jpa.hibernate.ddl-auto=none
 ```
