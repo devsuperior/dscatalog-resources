@@ -10,11 +10,15 @@ heroku logs --tail
 #### Gerando build do projeto com Maven
 Rodar os testes e fazer o build (Linux: ./mvnw)
 ```
-mvnw clean package
+mvn clean package
+
+ou
+
+./mvnw clean package
 ```
 Fazer o build ignorando os testes (Linux: ./mvnw)
 ```
-mvnw clean package -DskipTests
+mvn clean package -DskipTests
 ```
 
 #### Rodando o projeto
