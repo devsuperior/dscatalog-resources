@@ -8,7 +8,6 @@ heroku logs --tail
 ## Build e execução manual de um projeto Spring Boot
 
 #### Gerando build do projeto com Maven
-Rodar os testes e fazer o build (Linux: ./mvnw)
 ```
 mvn clean package
 
