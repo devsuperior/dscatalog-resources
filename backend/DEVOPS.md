@@ -333,7 +333,10 @@ deploy:
 
 
 ## CI/CD com Github Actions e Heroku
-(favor aguardar)
 
-## Docker Compose
-(favor aguardar)
+### Procfile
+```
+web: java -Dserver.port=$PORT $JAVA_OPTS -Xms256m -Xmx256m -Xss512k -jar target/dscatalog-0.0.1-SNAPSHOT.jar
+```
+
+
