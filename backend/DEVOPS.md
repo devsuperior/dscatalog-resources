@@ -273,8 +273,14 @@ docker search <usuario>
 - Criar container do app que se conecta ao banco RDS
   - Salvar comando RUN
 - Rodar comando RUN na instância EC2
+
+Bootcamp 2.0:
 ```
 docker run -p 80:8080 --name dscatalog-aws -e CLIENT_ID=dscatalog -e CLIENT_SECRET=dscatalog123 -e JWT_SECRET=MY-JWT-SECRET -e JWT_DURATION=86400 -e DATABASE_URL= acenelio/dscatalog:v1
+```
+Bootcamp 3.0:
+```
+docker run -p 80:8080 --name dscatalog-aws -e APP_PROFILE=prod -e DB_URL=jdbc:postgresql://HOST:5432/dscatalog -e DB_USERNAME=postgres -e DB_PASSWORD=12345678 acenelio/dscatalog:v1
 ```
 
 ## CI/CD com Github e Travis
