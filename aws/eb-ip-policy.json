@@ -1,0 +1,90 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Action": [
+				"s3:*"
+			],
+			"Effect": "Allow",
+			"Resource": "*"
+		},
+		{
+			"Sid": "XRayAccess",
+			"Action": [
+				"xray:PutTraceSegments",
+				"xray:PutTelemetryRecords",
+				"xray:GetSamplingRules",
+				"xray:GetSamplingTargets",
+				"xray:GetSamplingStatisticSummaries"
+			],
+			"Effect": "Allow",
+			"Resource": "*"
+		},
+		{
+			"Sid": "CloudWatchLogsAccess",
+			"Action": [
+				"logs:PutLogEvents",
+				"logs:CreateLogStream",
+				"logs:DescribeLogStreams",
+				"logs:DescribeLogGroups"
+			],
+			"Effect": "Allow",
+			"Resource": [
+				"arn:aws:logs:*:*:log-group:/aws/elasticbeanstalk*"
+			]
+		},
+		{
+			"Sid": "ElasticBeanstalkHealthAccess",
+			"Action": [
+				"elasticbeanstalk:PutInstanceStatistics"
+			],
+			"Effect": "Allow",
+			"Resource": [
+				"arn:aws:elasticbeanstalk:*:*:application/*",
+				"arn:aws:elasticbeanstalk:*:*:environment/*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ssm:DescribeAssociation",
+				"ssm:GetDeployablePatchSnapshotForInstance",
+				"ssm:GetDocument",
+				"ssm:DescribeDocument",
+				"ssm:GetManifest",
+				"ssm:GetParameter",
+				"ssm:GetParameters",
+				"ssm:ListAssociations",
+				"ssm:ListInstanceAssociations",
+				"ssm:PutInventory",
+				"ssm:PutComplianceItems",
+				"ssm:PutConfigurePackageResult",
+				"ssm:UpdateAssociationStatus",
+				"ssm:UpdateInstanceAssociationStatus",
+				"ssm:UpdateInstanceInformation"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ssmmessages:CreateControlChannel",
+				"ssmmessages:CreateDataChannel",
+				"ssmmessages:OpenControlChannel",
+				"ssmmessages:OpenDataChannel"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2messages:AcknowledgeMessage",
+				"ec2messages:DeleteMessage",
+				"ec2messages:FailMessage",
+				"ec2messages:GetEndpoint",
+				"ec2messages:GetMessages",
+				"ec2messages:SendReply"
+			],
+			"Resource": "*"
+		}
+	]
+}
