@@ -64,9 +64,6 @@ jobs:
         env:
           EB_VERSION_KEY: ${{ github.sha }}/$BUNDLE_NAME
 
-      - name: Echo variables
-        run: echo $EB_APP $EB_ENV $EB_VERSION
-
       - name: Update Elastic Beanstalk Environment
         run:  aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name "$EB_ENV" --version-label "$EB_VERSION"
         working-directory: backend
