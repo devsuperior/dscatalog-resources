@@ -62,7 +62,7 @@ jobs:
         run: aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label "$EB_VERSION" --source-bundle "S3Bucket=$EB_BUCKET,S3Key=$EB_VERSION_KEY"
         working-directory: backend
         env:
-          EB_VERSION_KEY: ${{ github.sha }}/$BUNDLE_NAME
+          EB_VERSION_KEY: ${{ github.sha }}/${{ secrets.BUNDLE_NAME }}
 
       - name: Update Elastic Beanstalk Environment
         run:  aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name "$EB_ENV" --version-label "$EB_VERSION"
