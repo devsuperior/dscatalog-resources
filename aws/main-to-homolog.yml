@@ -1,0 +1,74 @@
+name: MainToHomolog
+
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: homolog
+
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      BUNDLE_NAME: ${{ secrets.BUNDLE_NAME }}
+      EB_VERSION: dscatalog_v${{ github.sha }}
+      EB_VERSION_KEY: ${{ github.sha }}/${{ secrets.BUNDLE_NAME }}
+      EB_BUCKET: ${{ secrets.EB_BUCKET }}
+      EB_APP: ${{ secrets.EB_APP }}
+      EB_ENV: ${{ secrets.EB_ENV }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nelonoel/branch-name@v1.0.1
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt' # See 'Supported distributions' for available options
+          java-version: '11'
+      - run: java -version
+
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build Maven package
+        run: mvn --batch-mode --update-snapshots package
+        working-directory: backend
+        env:
+          MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Check AWS authentication
+        run: aws sts get-caller-identity
+
+      - name: Echo version to S3
+        run: echo aws s3 cp --quiet ./target/$BUNDLE_NAME s3://$EB_BUCKET/$EB_VERSION_KEY
+        working-directory: backend
+
+      - name: Copy version to S3
+        run: aws s3 cp --quiet ./target/$BUNDLE_NAME s3://$EB_BUCKET/$EB_VERSION_KEY
+        working-directory: backend
+
+      - name: Create EB Application Version
+        run: aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label "$EB_VERSION" --source-bundle "S3Bucket=$EB_BUCKET,S3Key=$EB_VERSION_KEY"
+        working-directory: backend
+        env:
+          EB_VERSION_KEY: ${{ github.sha }}/$BUNDLE_NAME
+
+      - name: Echo variables
+        run: echo $EB_APP $EB_ENV $EB_VERSION
+
+      - name: Update Elastic Beanstalk Environment
+        run:  aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name "$EB_ENV" --version-label "$EB_VERSION"
+        working-directory: backend
+
+      - run: echo "done main to homolog"
