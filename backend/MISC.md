@@ -67,10 +67,10 @@
 
 ### Códigos padrão
 ```
-aws.access_key_id=${AWS_KEY}
-aws.secret_access_key=${AWS_SECRET}
-s3.bucket=${DSCATALOG_BUCKET_NAME}
-s3.region=${DSCATALOG_BUCKET_REGION}
+aws.access_key_id=${AWS_KEY:empty}
+aws.secret_access_key=${AWS_SECRET:empty}
+s3.bucket=${DSCATALOG_BUCKET_NAME:empty}
+s3.region=${DSCATALOG_BUCKET_REGION:sa-east-1}
 
 spring.servlet.multipart.max-file-size=${MAX_FILE_SIZE:10MB}
 spring.servlet.multipart.max-request-size=${MAX_FILE_SIZE:10MB}
