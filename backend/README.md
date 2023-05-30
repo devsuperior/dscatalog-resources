@@ -2,43 +2,12 @@
 
 ## Dependências Maven
 
-### Pegue o pom.xml completo para Spring Boot versão 2.4.2 no link abaixo:
+### Arquivo pom.xml do Capítulo 1 na versão Spring Boot 2.4.2:
 https://gist.github.com/acenelio/8292b51c23c02b353a478c2b0bd8d85e
 
-```xml
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-web</artifactId>
-</dependency>
+### Arquivo pom.xml do Capítulo 1 na versão Spring Boot 3.1.0:
+https://gist.github.com/acenelio/56e6f96a1e8fdb17d46f8b41b4c757fc
 
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
-
-<dependency>
-	<groupId>com.h2database</groupId>
-	<artifactId>h2</artifactId>
-	<scope>runtime</scope>
-</dependency>
-
-<dependency>
-	<groupId>org.postgresql</groupId>
-	<artifactId>postgresql</artifactId>
-	<scope>runtime</scope>
-</dependency>
-
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-validation</artifactId>
-</dependency>
-
-<dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-test</artifactId>
-	<scope>test</scope>
-</dependency>
-```
 
 ## Parâmetros de paginação
 
@@ -116,11 +85,11 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
 
 ```javascript
 {
-  "date": "2020-07-20T10:00:00Z",
-  "description": "The new generation PS5 video game",
   "name": "PS5",
-  "imgUrl": "",
+  "description": "The new generation PS5 video game",
   "price": 600.0,
+  "imgUrl": "",
+  "date": "2020-07-20T10:00:00Z",
   "categories": [
     {
       "id": 1
@@ -136,11 +105,11 @@ INSERT INTO tb_product_category (product_id, category_id) VALUES (25, 3);
 
 ```javascript
 {
-  "date": "2020-07-20T10:00:00Z",
-  "description": "Updated product description",
   "name": "Updated product name",
-  "imgUrl": "",
+  "description": "Updated product description",
   "price": 600.0,
+  "imgUrl": "",
+  "date": "2020-07-20T10:00:00Z",
   "categories": [
     {
       "id": 1
@@ -165,7 +134,21 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 ```
 
-## Configuração provisória para liberar todos endpoints
+## Configuração provisória para liberar todos endpoints (Spring Boot 3.1+)
+```java
+@Configuration
+public class SecurityConfig {
+
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf(csrf -> csrf.disable());
+		http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+		return http.build();
+	}
+}
+```
+
+## Configuração provisória para liberar todos endpoints (Spring Boot 2)
 ```java
 @Configuration
 @EnableWebSecurity
@@ -269,19 +252,16 @@ spring.jpa.open-in-view=false
 #### application-test.properties
 
 ```
-# DATASOURCE
-spring.datasource.driverClassName=org.h2.Driver
+# H2 connection
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.username=sa
 spring.datasource.password=
 
-# H2 CLIENT
+# H2 client
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 
-# JPA, SQL
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-spring.jpa.defer-datasource-initialization=true
+# Show sql
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 ```
@@ -289,9 +269,9 @@ spring.jpa.properties.hibernate.format_sql=true
 #### application-dev.properties
 
 ```
-#spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
-#spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
+#spring.jpa.properties.jakarta.persistence.schema-generation.create-source=metadata
+#spring.jpa.properties.jakarta.persistence.schema-generation.scripts.action=create
+#spring.jpa.properties.jakarta.persistence.schema-generation.scripts.create-target=create.sql
 #spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/dscatalog
@@ -332,7 +312,7 @@ git remote -v
 git subtree push --prefix backend heroku main
 ```
 
-## Beans para token JWT
+## Beans para token JWT (Spring Boot 2 apenas)
 ```java
 @Bean
 public JwtAccessTokenConverter accessTokenConverter() {
@@ -353,7 +333,7 @@ Variáveis:
 - host: http://localhost:8080
 - client-id: dscatalog
 - client-secret: dscatalog123
-- username: leia@gmail.com
+- username: maria@gmail.com
 - password: 123456
 - token: 
 
